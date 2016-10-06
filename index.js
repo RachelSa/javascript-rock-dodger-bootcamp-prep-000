@@ -107,35 +107,29 @@ window.alert("YOU LOSE!");
 
 function moveDodger(e) {
   if (e.which === LEFT_ARROW) {
-    window.moveDodgerLeft();
+    window.requestAnimationFrame(moveDodgerLeft);
   }
   if (e.which === RIGHT_ARROW) {
-    window.moveDodgerRight();
+    window.requestAnimationFrame(moveDodgerRight);
     }
 }
 
 function moveDodgerLeft() {
-  var left = 180
-  function step(){
-    dodger.style.left = `${left -= 4}px`
-    if (left > 0) {
-      window.requestAnimationFrame(step)
-    }
-  }
-  window.requestAnimationFrame(step)
+  var left = positionToInteger(DODGER.style.left);
 
+    if (left > 0) {
+      DODGER.style.left = `${left -= 4}px`
+      window.requestAnimationFrame(moveDodgerLeft);
+    }
 }
 
 function moveDodgerRight() {
-  var right = 180
-  function step(){
-    dodger.style.left = `${right += 4}px`
-    if (right < 360) {
-      window.requestAnimationFrame(step)
-    }
-  }
-  window.requestAnimationFrame(step)
+    var right = positionToInteger(DODGER.style.left);
 
+    if (right < 360) {
+      DODGER.style.left = `${right += 4}px`;
+      window.requestAnimationFrame(moveDodgerRight);
+    }
   }
 
 
